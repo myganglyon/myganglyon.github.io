@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Question Bank (JSON + Bootstrap)</title>
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f4f7fa;
+        color: #0f172a;
+      }
+      .app-shell {
+        max-width: 1100px;
+        margin: auto;
+        padding: 24px;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        color: #0b1324;
+      }
+      .card {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+      }
+      .badge {
+        background: #eaf6ff;
+        color: #0984e3;
+      }
+      .muted {
+        color: #5b6472;
+      }
+      .search-xl .form-control {
+        height: 58px;
+        font-size: 1.05rem;
+      }
+      .btn-glow {
+        background: linear-gradient(135deg, #3b82f6, #22d3ee);
+        border: 0;
+        color: #ffffff;
+      }
+      .btn-outline {
+        border: 1px solid #d1d5db;
+        color: #111827;
+        background: #ffffff;
+      }
+      .btn-outline:hover {
+        background: #f3f4f6;
+      }
+      .modal-content {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid #e5e7eb;
+      }
+      select,
+      .form-select,
+      .form-control {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid #d1d5db;
+      }
+      select:focus,
+      .form-select:focus,
+      .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+        border-color: #3b82f6;
+      }
+      .count-pill {
+        visibility: hidden;
+        border: 1px dashed #d1d5db;
+        border-radius: 999px;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.85rem;
+        color: #374151;
+        background: #ffffff;
+      }
+      mark {
+        background: #fff2a8;
+        color: #111827;
+        padding: 0 0.2rem;
+        border-radius: 0.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Header -->
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3"
+      >
+        <h1 class="brand h3 m-0">2nd Prof Question Bank</h1>
+        <div class="d-flex align-items-center gap-2">
+          <span id="count" class="count-pill">0 Questions</span>
+          <button
+            class="btn btn-secondary"
+            id="btnReset"
+            title="Clear search & filters"
+          >
+            Reset Filter
+          </button>
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#filterModal"
+          >
+            Filter Questions
+          </button>
+        </div>
+      </div>
+
+      <!-- Big Search -->
+      <div class="search-xl mb-3">
+        <div class="input-group">
+          <input
+            id="search"
+            type="search"
+            class="form-control form-control-lg"
+            placeholder="Type keywords to search instantly…"
+            aria-describedby="searchIcon"
+          />
+        </div>
+        <small class="muted"
+          >Search matches question text, subject, and topic.</small
+        >
+      </div>
+
+      <!-- Results -->
+      <div id="results" class="vstack gap-3"></div>
+
+      <p class="mt-4 muted">
+        Made with love by <b>Md. Abeer Hussain</b> (MuMC 08).
+      </p>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Filters</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="fYear" class="form-label">Year</label>
+                <select id="fYear" class="form-select">
+                  <option value="">All years</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="fMonth" class="form-label">Month</label>
+                <select id="fMonth" class="form-select">
+                  <option value="">All months</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="fUniversity" class="form-label">University</label>
+                <select id="fUniversity" class="form-select">
+                  <option value="">All universities</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="fSubject" class="form-label">Subject</label>
+                <select id="fSubject" class="form-select">
+                  <option value="">All subjects</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="fTopic" class="form-label">Topic</label>
+                <select id="fTopic" class="form-select">
+                  <option value="">All topics</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="clearFilters" class="btn btn-outline">Clear</button>
+            <button id="applyFilters" class="btn btn-primary">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // --- SAMPLE DATA (with month) -----------------------------------------
+      // If a /questions.json file exists (same folder), we will fetch that instead.
+      // Month values can be strings like "June" / "December" (or any two sessions you use).
+      const SAMPLE_DATA = [
+        {
+          id: 1,
+          year: 2021,
+          month: "June",
+          university: "DU",
+          subject: "CSE",
+          topic: "Algorithms",
+          text: "Explain Dijkstra's algorithm and its complexity with an example.",
+        },
+        {
+          id: 2,
+          year: 2022,
+          month: "December",
+          university: "BUET",
+          subject: "Math",
+          topic: "Calculus",
+          text: "Evaluate the integral of e^(x^2) using series expansion techniques.",
+        },
+        {
+          id: 3,
+          year: 2023,
+          month: "July",
+          university: "RU",
+          subject: "Physics",
+          topic: "Mechanics",
+          text: "State and prove the work-energy theorem. Provide two applications.",
+        },
+        {
+          id: 4,
+          year: 2021,
+          month: "December",
+          university: "JU",
+          subject: "CSE",
+          topic: "Databases",
+          text: "Design an ER diagram for a question bank and normalize to 3NF.",
+        },
+        {
+          id: 5,
+          year: 2024,
+          month: "June",
+          university: "CU",
+          subject: "Chemistry",
+          topic: "Organic",
+          text: "Differentiate SN1 and SN2 mechanisms with energy profile diagrams.",
+        },
+        {
+          id: 6,
+          year: 2020,
+          month: "December",
+          university: "DU",
+          subject: "CSE",
+          topic: "Algorithms",
+          text: "What is dynamic programming? Solve the coin change problem.",
+        },
+        {
+          id: 7,
+          year: 2024,
+          month: "December",
+          university: "BUET",
+          subject: "CSE",
+          topic: "Networking",
+          text: "Explain the TCP three-way handshake and connection teardown.",
+        },
+      ];
+
+      let DATA = [];
+      const state = {
+        search: "",
+        year: "",
+        month: "",
+        university: "",
+        subject: "",
+        topic: "",
+      };
+
+      const els = {
+        search: document.getElementById("search"),
+        results: document.getElementById("results"),
+        count: document.getElementById("count"),
+        btnReset: document.getElementById("btnReset"),
+        fYear: document.getElementById("fYear"),
+        fMonth: document.getElementById("fMonth"),
+        fUniversity: document.getElementById("fUniversity"),
+        fSubject: document.getElementById("fSubject"),
+        fTopic: document.getElementById("fTopic"),
+        applyFilters: document.getElementById("applyFilters"),
+        clearFilters: document.getElementById("clearFilters"),
+        filterModal: document.getElementById("filterModal"),
+      };
+
+      const uniq = (arr) =>
+        [...new Set(arr)].filter((v) => v !== "" && v != null);
+      const escapeHTML = (s) =>
+        (s + "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            }[c])
+        );
+      const debounce = (fn, ms = 120) => {
+        let t;
+        return (...a) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn(...a), ms);
+        };
+      };
+
+      function highlight(text, query) {
+        if (!query) return escapeHTML(text);
+        const re = new RegExp(
+          `(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+          "ig"
+        );
+
+        return escapeHTML(text).replace(re, "<mark>$1</mark>");
+      }
+
+      function populateFilters() {
+        const years = uniq(DATA.map((x) => x.year)).sort((a, b) => b - a);
+        const months = uniq(DATA.map((x) => x.month)).sort((a, b) =>
+          a.localeCompare(b)
+        );
+        const unis = uniq(DATA.map((x) => x.university)).sort();
+        const subs = uniq(DATA.map((x) => x.subject)).sort();
+        const topics = uniq(DATA.map((x) => x.topic)).sort();
+        for (const y of years) {
+          els.fYear.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${y}">${y}</option>`
+          );
+        }
+        for (const m of months) {
+          els.fMonth.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${m}">${m}</option>`
+          );
+        }
+        for (const u of unis) {
+          els.fUniversity.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${escapeHTML(u)}">${escapeHTML(u)}</option>`
+          );
+        }
+        for (const s of subs) {
+          els.fSubject.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${escapeHTML(s)}">${escapeHTML(s)}</option>`
+          );
+        }
+        for (const t of topics) {
+          els.fTopic.insertAdjacentHTML(
+            "beforeend",
+            `<option value="${escapeHTML(t)}">${escapeHTML(t)}</option>`
+          );
+        }
+      }
+
+      function applyFilterAndRender() {
+        const q = state.search.trim().toLowerCase();
+        const rows = DATA.filter((item) => {
+          if (state.year && String(item.year) !== String(state.year))
+            return false;
+          if (state.month && String(item.month) !== String(state.month))
+            return false;
+          if (state.university && item.university !== state.university)
+            return false;
+          if (state.subject && item.subject !== state.subject) return false;
+          if (state.topic && item.topic !== state.topic) return false;
+          if (q) {
+            const hay =
+              `${item.text} ${item.subject} ${item.topic}`.toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        });
+        render(rows);
+      }
+
+      function render(rows) {
+        els.count.textContent = `${rows.length} Question${
+          rows.length === 1 ? "" : "s"
+        }`;
+        els.results.innerHTML = rows
+          .map((r) => {
+            const hText = highlight(r.text, state.search.trim());
+            return `<div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex flex-wrap gap-2 mb-2">
+                <span class="badge rounded-pill">Year: ${r.year}</span>
+                <span class="badge rounded-pill">Month: ${escapeHTML(
+                  r.month || "N/A"
+                )}</span>
+                <span class="badge rounded-pill">University: ${escapeHTML(
+                  r.university
+                )}</span>
+                <span class="badge rounded-pill">Subject: ${escapeHTML(
+                  r.subject
+                )}</span>
+                <span class="badge rounded-pill">Topic: ${escapeHTML(
+                  r.topic
+                )}</span>
+              </div>
+              <p class="mb-0" style="font-weight: 600; font-size: 18px;">${hText}</p>
+            </div>
+          </div>`;
+          })
+          .join("");
+      }
+
+      function clearAll() {
+        state.search =
+          state.year =
+          state.month =
+          state.university =
+          state.subject =
+          state.topic =
+            "";
+        els.search.value = "";
+        for (const sel of [
+          els.fYear,
+          els.fMonth,
+          els.fUniversity,
+          els.fSubject,
+          els.fTopic,
+        ])
+          sel.value = "";
+        applyFilterAndRender();
+      }
+
+      // Events
+      els.applyFilters.addEventListener("click", () => {
+        state.year = els.fYear.value;
+        state.month = els.fMonth.value;
+        state.university = els.fUniversity.value;
+        state.subject = els.fSubject.value;
+        state.topic = els.fTopic.value;
+        applyFilterAndRender();
+        const modal = bootstrap.Modal.getInstance(els.filterModal);
+        if (modal) modal.hide();
+      });
+      els.clearFilters.addEventListener("click", () => {
+        for (const sel of [
+          els.fYear,
+          els.fMonth,
+          els.fUniversity,
+          els.fSubject,
+          els.fTopic,
+        ])
+          sel.value = "";
+        state.year =
+          state.month =
+          state.university =
+          state.subject =
+          state.topic =
+            "";
+      });
+      els.btnReset.addEventListener("click", clearAll);
+      els.search.addEventListener(
+        "input",
+        debounce((e) => {
+          state.search = e.target.value;
+          applyFilterAndRender();
+        }, 70)
+      );
+
+      // Data loading
+      async function boot() {
+        try {
+          const res = await fetch("./questions.json", { cache: "no-store" });
+          if (res.ok) {
+            DATA = await res.json();
+          } else {
+            DATA = SAMPLE_DATA;
+          }
+        } catch {
+          DATA = SAMPLE_DATA;
+        }
+        // If your external JSON lacks a month, default it to "June"
+        DATA = DATA.map((q) => ({
+          month: "month" in q ? q.month : "June",
+          ...q,
+        }));
+        populateFilters();
+        render(DATA);
+      }
+      boot();
+    </script>
+  </body>
+</html>
