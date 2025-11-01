@@ -8,14 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: "class", // or 'media'
+        darkMode: "class",
         theme: {
           extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-            },
+            fontFamily: { sans: ["Inter", "sans-serif"] },
             colors: {
-              // Using zinc as a base for the shadcn monochrome feel
               zinc: {
                 50: "#fafafa",
                 100: "#f4f4f5",
@@ -37,35 +34,33 @@
     <!-- Set base styles -->
     <style>
       body {
-        /* Basic font smoothing */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Simple scrollbar for a cleaner look */
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
       }
       ::-webkit-scrollbar-thumb {
-        background-color: #a1a1aa; /* zinc-400 */
+        background-color: #a1a1aa;
         border-radius: 3px;
       }
       ::-webkit-scrollbar-track {
-        background-color: #f4f4f5; /* zinc-100 */
+        background-color: #f4f4f5;
       }
       .dark ::-webkit-scrollbar-thumb {
-        background-color: #52525b; /* zinc-600 */
+        background-color: #52525b;
       }
       .dark ::-webkit-scrollbar-track {
-        background-color: #27272a; /* zinc-800 */
+        background-color: #27272a;
       }
 
       /* Page transition helper */
       .page {
-        display: none; /* Hidden by default */
+        display: none;
       }
       .page.active {
-        display: block; /* Shown when active */
+        display: block;
       }
 
       /* Modal transition helpers */
@@ -104,10 +99,7 @@
   <body
     class="bg-gray-50 dark:bg-zinc-950 font-sans text-zinc-900 dark:text-zinc-50"
   >
-    <!-- 
-      App container: Simulates a mobile app frame.
-      On desktop, it's a centered column. On mobile, it's full-width.
-    -->
+    <!-- App container -->
     <div
       id="app-container"
       class="max-w-lg mx-auto min-h-screen bg-white dark:bg-zinc-900 shadow-lg flex flex-col"
@@ -117,7 +109,6 @@
         <header
           class="p-4 flex justify-center items-center border-b border-zinc-200 dark:border-zinc-800 sticky top-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm z-10"
         >
-          <!-- App Logo -->
           <div class="flex items-center gap-2">
             <h1 class="text-xl font-bold">Ganglyon</h1>
           </div>
@@ -136,7 +127,6 @@
               id="search-icon"
               class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
             >
-              <!-- Search Icon -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -161,7 +151,6 @@
           class="flex-grow p-4 space-y-4 overflow-y-auto pb-24"
         >
           <!-- Questions will be injected here by JS -->
-          <!-- Empty State -->
           <div
             id="empty-state"
             class="hidden text-center text-zinc-500 dark:text-zinc-400 pt-16"
@@ -193,7 +182,6 @@
           id="open-filter-btn"
           class="fixed bottom-20 right-5 z-20 max-w-lg mx-auto w-14 h-14 rounded-full bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 flex items-center justify-center shadow-lg hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-all"
         >
-          <!-- Filter Icon -->
           <svg
             id="filter-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -223,10 +211,7 @@
         <main
           id="collection-list"
           class="flex-grow p-4 space-y-3 overflow-y-auto pb-24"
-        >
-          <!-- Collection items will be injected here -->
-        </main>
-        <!-- Empty state for collections -->
+        ></main>
         <div
           id="collections-empty-state"
           class="hidden text-center text-zinc-500 dark:text-zinc-400 pt-16 flex-grow"
@@ -261,7 +246,6 @@
             id="back-to-collections-btn"
             class="p-2 -ml-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
           >
-            <!-- Chevron Left Icon -->
             <svg
               id="chevron-left-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +271,6 @@
             id="delete-collection-btn"
             class="p-2 -mr-2 rounded-md hover:bg-red-100 dark:hover:bg-red-900 text-red-500 dark:text-red-400"
           >
-            <!-- Trash Icon -->
             <svg
               id="trash-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -312,8 +295,82 @@
         <main
           id="collection-question-list"
           class="flex-grow p-4 space-y-4 overflow-y-auto pb-24"
+        ></main>
+      </div>
+
+      <!-- ===== PAGE: QUESTION DETAIL ===== -->
+      <div id="page-question-detail" class="page flex-grow flex-col">
+        <header
+          class="p-4 flex items-center gap-3 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-sm z-10"
         >
-          <!-- Questions for this collection will be injected here -->
+          <button
+            id="back-to-home-btn"
+            class="p-2 -ml-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <h1 class="text-xl font-bold">Question</h1>
+        </header>
+
+        <main
+          id="question-detail-main"
+          class="flex-grow p-5 pb-28 space-y-5 overflow-y-auto"
+        >
+          <div id="qd-text" class="text-2xl leading-snug font-semibold"></div>
+
+          <div id="qd-tags" class="flex flex-wrap gap-2"></div>
+
+          <div>
+            <h3
+              class="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mb-2"
+            >
+              Appearances
+            </h3>
+            <div id="qd-appearances" class="flex flex-wrap gap-2"></div>
+          </div>
+
+          <div>
+            <h3
+              class="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mb-2"
+            >
+              In Collections
+            </h3>
+            <div id="qd-collections" class="flex flex-wrap gap-2"></div>
+            <div
+              id="qd-no-collections"
+              class="text-sm text-zinc-500 dark:text-zinc-400 hidden"
+            >
+              Not in any collection yet.
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <div class="grid grid-cols-2 gap-3">
+              <button
+                id="qd-bookmark-btn"
+                class="w-full bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 font-semibold py-3 rounded-lg hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
+              >
+                Bookmark this question
+              </button>
+              <button
+                id="qd-askai-btn"
+                class="w-full border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 font-semibold py-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-700 transition-colors"
+              >
+                Ask AI
+              </button>
+            </div>
+          </div>
         </main>
       </div>
 
@@ -326,7 +383,6 @@
           class="nav-btn flex flex-col items-center justify-center text-zinc-900 dark:text-zinc-50 w-full h-full"
           data-page="home"
         >
-          <!-- Home Icon -->
           <svg
             id="home-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -349,7 +405,6 @@
           class="nav-btn flex flex-col items-center justify-center text-zinc-500 dark:text-zinc-400 w-full h-full"
           data-page="collections"
         >
-          <!-- Collections (Bookmark) Icon -->
           <svg
             id="bookmark-nav-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -379,7 +434,6 @@
         id="filter-modal-content"
         class="modal-content fixed bottom-0 left-0 right-0 max-w-lg mx-auto z-50 bg-white dark:bg-zinc-800 rounded-t-2xl p-4 shadow-xl max-h-[80vh] flex flex-col"
       >
-        <!-- Modal Header -->
         <div
           class="flex justify-between items-center pb-4 border-b border-zinc-200 dark:border-zinc-700"
         >
@@ -394,7 +448,6 @@
             id="close-filter-btn"
             class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-700"
           >
-            <!-- Close Icon -->
             <svg
               id="close-icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -412,7 +465,7 @@
             </svg>
           </button>
         </div>
-        <!-- Modal Body -->
+
         <div class="space-y-4 py-4 overflow-y-auto">
           <div>
             <label
@@ -424,9 +477,7 @@
               id="filter-subject"
               data-filter="subject"
               class="filter-select w-full rounded-md border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
-            >
-              <!-- Options injected by JS -->
-            </select>
+            ></select>
           </div>
           <div>
             <label
@@ -438,9 +489,7 @@
               id="filter-topic"
               data-filter="topic"
               class="filter-select w-full rounded-md border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
-            >
-              <!-- Options injected by JS -->
-            </select>
+            ></select>
           </div>
           <div>
             <label
@@ -452,9 +501,7 @@
               id="filter-year"
               data-filter="year"
               class="filter-select w-full rounded-md border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
-            >
-              <!-- Options injected by JS -->
-            </select>
+            ></select>
           </div>
           <div>
             <label
@@ -466,9 +513,7 @@
               id="filter-month"
               data-filter="month"
               class="filter-select w-full rounded-md border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
-            >
-              <!-- Options injected by JS -->
-            </select>
+            ></select>
           </div>
           <div>
             <label
@@ -480,12 +525,10 @@
               id="filter-university"
               data-filter="university"
               class="filter-select w-full rounded-md border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white focus:border-transparent"
-            >
-              <!-- Options injected by JS -->
-            </select>
+            ></select>
           </div>
         </div>
-        <!-- Modal Footer -->
+
         <div class="pt-4 border-t border-zinc-200 dark:border-zinc-700">
           <button
             id="apply-filter-btn"
@@ -497,7 +540,7 @@
       </div>
     </div>
 
-    <!-- ===== MODAL: BOOKMARK/COLLECTION ===== -->
+    <!-- ===== MODAL: MANAGE COLLECTIONS ===== -->
     <div
       id="bookmark-modal"
       class="modal fixed inset-0 bg-black/40 dark:bg-black/60 z-40"
@@ -506,14 +549,12 @@
         id="bookmark-modal-content"
         class="modal-content fixed bottom-0 left-0 right-0 max-w-lg mx-auto z-50 bg-white dark:bg-zinc-800 rounded-t-2xl p-4 shadow-xl max-h-[80vh] flex flex-col"
       >
-        <!-- Modal Header -->
-        <div class="flex justify-between items-center pb-4">
-          <h2 class="text-lg font-semibold">Save to Collection</h2>
+        <div class="flex justify-between items-center pb-2">
+          <h2 class="text-lg font-semibold">Manage Collections</h2>
           <button
             id="close-bookmark-btn"
             class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-700"
           >
-            <!-- Close Icon -->
             <svg
               id="close-icon-bookmark"
               xmlns="http://www.w3.org/2000/svg"
@@ -531,8 +572,8 @@
             </svg>
           </button>
         </div>
-        <!-- Modal Body -->
-        <div class="space-y-4 py-4 overflow-y-auto">
+
+        <div class="space-y-4 py-3 overflow-y-auto">
           <!-- Create New Collection -->
           <div class="flex gap-2" style="padding-left: 2px">
             <input
@@ -553,30 +594,37 @@
             class="text-red-500 text-sm hidden"
           ></div>
 
-          <!-- Horizontal divider -->
+          <!-- Divider -->
           <div class="relative flex py-2 items-center">
             <div
               class="flex-grow border-t border-zinc-200 dark:border-zinc-700"
             ></div>
             <span
               class="flex-shrink mx-4 text-xs text-zinc-400 dark:text-zinc-500"
-              >OR</span
+              >Select collections</span
             >
             <div
               class="flex-grow border-t border-zinc-200 dark:border-zinc-700"
             ></div>
           </div>
 
-          <!-- Existing Collections List -->
-          <div id="existing-collections-list" class="space-y-2">
-            <!-- Collections injected by JS -->
-          </div>
+          <!-- Existing Collections List (checkboxes) -->
+          <div id="existing-collections-list" class="space-y-1"></div>
           <div
             id="existing-collections-empty"
-            class="text-center text-zinc-500 dark:text-zinc-400 py-4 hidden"
+            class="text-center text-zinc-500 dark:text-zinc-400 py-3 hidden"
           >
             <p>No existing collections. Create one above.</p>
           </div>
+        </div>
+
+        <div class="pt-3 border-t border-zinc-200 dark:border-zinc-700">
+          <button
+            id="bookmark-save-btn"
+            class="w-full bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 font-semibold py-3 rounded-lg hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
@@ -591,7 +639,7 @@
 
     <!-- =========== JAVASCRIPT =========== -->
     <script src="database.js"></script>
-    <script type_A="module">
+    <script type="module">
       // Your provided database
 
       // --- ICON SVG Definitions ---
@@ -632,7 +680,9 @@
             university: null,
           },
           currentPage: "home",
-          questionToBookmark: null,
+          currentQuestionId: null, // for detail page
+          questionToBookmark: null, // for modal
+          tempSelectedCollections: new Set(), // live selection in modal
           toastTimer: null,
         };
 
@@ -644,6 +694,8 @@
           collectionDetailPage: document.getElementById(
             "page-collection-detail"
           ),
+          questionDetailPage: document.getElementById("page-question-detail"),
+
           questionListContainer: document.getElementById(
             "question-list-container"
           ),
@@ -679,6 +731,16 @@
             "collection-question-list"
           ),
 
+          // Question Detail Page
+          backToHomeBtn: document.getElementById("back-to-home-btn"),
+          qdText: document.getElementById("qd-text"),
+          qdTags: document.getElementById("qd-tags"),
+          qdAppearances: document.getElementById("qd-appearances"),
+          qdCollections: document.getElementById("qd-collections"),
+          qdNoCollections: document.getElementById("qd-no-collections"),
+          qdBookmarkBtn: document.getElementById("qd-bookmark-btn"),
+          qdAskAiBtn: document.getElementById("qd-askai-btn"),
+
           // Bookmark Modal
           bookmarkModal: document.getElementById("bookmark-modal"),
           closeBookmarkBtn: document.getElementById("close-bookmark-btn"),
@@ -691,6 +753,7 @@
           existingCollectionsEmpty: document.getElementById(
             "existing-collections-empty"
           ),
+          bookmarkSaveBtn: document.getElementById("bookmark-save-btn"),
 
           // Toast
           toast: document.getElementById("toast"),
@@ -706,12 +769,13 @@
           bindBookmarkModalListeners();
           bindSearchListener();
           bindCollectionDetailListeners();
+          bindQuestionDetailListeners();
 
           populateFilterDropdowns();
           applyFiltersAndSearch();
           renderPage(state.currentPage);
 
-          // Set dark mode based on system preference
+          // Respect system dark mode
           if (
             window.matchMedia &&
             window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -727,12 +791,10 @@
           state.allQuestions = DB;
           state.filteredQuestions = [...state.allQuestions];
         }
-
         function loadCollections() {
           state.collections =
             JSON.parse(localStorage.getItem("qbank_collections")) || {};
         }
-
         function saveCollections() {
           localStorage.setItem(
             "qbank_collections",
@@ -743,11 +805,10 @@
         // --- Page Navigation ---
         function renderPage(pageId) {
           state.currentPage = pageId;
-          dom.pages.forEach((page) => {
-            page.classList.toggle("active", page.id === `page-${pageId}`);
-          });
+          dom.pages.forEach((page) =>
+            page.classList.toggle("active", page.id === `page-${pageId}`)
+          );
 
-          // Update nav button active state
           dom.navButtons.forEach((btn) => {
             const isActive = btn.dataset.page === pageId;
             btn.classList.toggle("text-zinc-900", isActive);
@@ -756,44 +817,75 @@
             btn.classList.toggle("dark:text-zinc-400", !isActive);
           });
 
-          // Specific page render functions
           if (pageId === "home") {
-            applyFiltersAndSearch(); // Re-render question list
+            applyFiltersAndSearch();
           } else if (pageId === "collections") {
             renderCollectionsPage();
+          } else if (
+            pageId === "question-detail" &&
+            state.currentQuestionId != null
+          ) {
+            renderQuestionDetailPage(state.currentQuestionId);
           }
         }
 
         function bindNavListeners() {
           dom.navButtons.forEach((btn) => {
-            btn.addEventListener("click", () => {
-              renderPage(btn.dataset.page);
-            });
+            btn.addEventListener("click", () => renderPage(btn.dataset.page));
           });
         }
 
-        // --- Question Rendering ---
+        // --- Helpers ---
+        function buildAppearancesHTML(q) {
+          const grouped = {};
+          const monthKeys = Object.keys(MONTH_ABBR);
+          q.appearances.forEach((a) => {
+            const monthName = a.month;
+            const monthAbbr = MONTH_ABBR[monthName] || monthName;
+            const monthIndex = monthKeys.indexOf(monthName);
+            const year = parseInt(a.year.toString());
+            const dateStr = `${monthAbbr} '${year.toString().slice(-2)}`;
+            if (!grouped[a.university]) grouped[a.university] = [];
+            grouped[a.university].push({ year, monthIndex, dateStr });
+          });
+
+          return Object.entries(grouped)
+            .map(([university, dates]) => {
+              dates.sort((a, b) =>
+                a.year !== b.year
+                  ? b.year - a.year
+                  : a.monthIndex - b.monthIndex
+              );
+              const dateStrings = dates.map((d) => d.dateStr).join(", ");
+              return `<span class="inline-block bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 px-2.5 py-1 rounded-full text-xs font-medium">${university} ${dateStrings}</span>`;
+            })
+            .join("");
+        }
+
+        function questionCollections(id) {
+          // returns array of collection names containing the question
+          return Object.entries(state.collections)
+            .filter(([, ids]) => ids.includes(id))
+            .map(([name]) => name);
+        }
+
+        // --- Question Rendering (Cards) ---
         function renderQuestionList(questions, container) {
-          container.innerHTML = ""; // Clear previous list
+          container.innerHTML = "";
 
           if (questions.length === 0) {
-            if (container === dom.questionListContainer) {
+            if (container === dom.questionListContainer)
               dom.emptyState.classList.remove("hidden");
-            } else {
-              // Empty state for collection detail
+            else
               container.innerHTML = `
-                            <div class="text-center text-zinc-500 dark:text-zinc-400 pt-16">
-                                <h3 class="text-lg font-semibold">Collection is Empty</h3>
-                                <p class="text-sm">You can remove questions from a collection here.</p>
-                            </div>
-                        `;
-            }
+              <div class="text-center text-zinc-500 dark:text-zinc-400 pt-16">
+                <h3 class="text-lg font-semibold">Collection is Empty</h3>
+                <p class="text-sm">You can remove questions from a collection here.</p>
+              </div>`;
             return;
           }
-
-          if (container === dom.questionListContainer) {
+          if (container === dom.questionListContainer)
             dom.emptyState.classList.add("hidden");
-          }
 
           const fragment = document.createDocumentFragment();
           const allBookmarkedIds = Object.values(state.collections).flat();
@@ -802,77 +894,46 @@
             const isBookmarked = allBookmarkedIds.includes(q.id);
             const card = document.createElement("div");
             card.className =
-              "bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm p-4 relative";
+              "bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm p-4 relative cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700/40 transition-colors";
 
-            // --- NEW APPEARANCE LOGIC ---
-            const groupedAppearancesSortable = {};
-            const monthKeys = Object.keys(MONTH_ABBR); // Get keys once for indexOf
-
-            q.appearances.forEach((a) => {
-              const monthName = a.month;
-              const monthAbbr = MONTH_ABBR[monthName] || monthName;
-              const monthIndex = monthKeys.indexOf(monthName);
-              const year = parseInt(a.year.toString());
-              const dateStr = `${monthAbbr} '${year.toString().slice(-2)}`;
-
-              if (!groupedAppearancesSortable[a.university]) {
-                groupedAppearancesSortable[a.university] = [];
-              }
-              groupedAppearancesSortable[a.university].push({
-                year,
-                monthIndex,
-                dateStr,
-              });
-            });
-
-            const appearancesHTML = Object.entries(groupedAppearancesSortable)
-              .map(([university, dates]) => {
-                // Sort dates: descending year, then ascending month
-                dates.sort((a, b) => {
-                  if (a.year !== b.year) return b.year - a.year; // Newest year first
-                  return a.monthIndex - b.monthIndex; // Earlier month first
-                });
-
-                const dateStrings = dates.map((d) => d.dateStr).join(", ");
-                return `<span class="inline-block bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 px-2.5 py-1 rounded-full text-xs font-medium">${university} ${dateStrings}</span>`;
-              })
-              .join("");
-            // --- END NEW LOGIC ---
+            const appearancesHTML = buildAppearancesHTML(q);
 
             card.innerHTML = `
-                        <button class="bookmark-btn absolute top-3 right-3 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-700 ${
-                          isBookmarked
-                            ? "text-zinc-900 dark:text-zinc-100"
-                            : "text-zinc-400 dark:text-zinc-500"
-                        }" data-id="${q.id}">
-                            ${
-                              isBookmarked
-                                ? ICONS.bookmarkFilled
-                                : ICONS.bookmark
-                            }
-                        </button>
-                        <p class="text-base font-medium text-zinc-900 dark:text-white pr-10">${
-                          q.text
-                        }</p>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2.5 py-1 rounded-full text-xs font-medium">${
-                              q.subject
-                            }</span>
-                            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 px-2.5 py-1 rounded-full text-xs font-medium">${
-                              q.topic
-                            }</span>
-                        </div>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            ${appearancesHTML}
-                        </div>
-                    `;
+              <button class="bookmark-btn absolute top-3 right-3 p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-700 ${
+                isBookmarked
+                  ? "text-zinc-900 dark:text-zinc-100"
+                  : "text-zinc-400 dark:text-zinc-500"
+              }" data-id="${q.id}">
+                ${isBookmarked ? ICONS.bookmarkFilled : ICONS.bookmark}
+              </button>
+              <p class="text-base font-medium text-zinc-900 dark:text-white pr-10">${
+                q.text
+              }</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2.5 py-1 rounded-full text-xs font-medium">${
+                  q.subject
+                }</span>
+                <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 px-2.5 py-1 rounded-full text-xs font-medium">${
+                  q.topic
+                }</span>
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2">
+                ${appearancesHTML}
+              </div>
+            `;
 
-            // Add listener to bookmark button
+            // Open detail page on card click
+            card.addEventListener("click", () => {
+              state.currentQuestionId = q.id;
+              renderPage("question-detail");
+            });
+
+            // Bookmark button (stop bubbling)
             card
               .querySelector(".bookmark-btn")
               .addEventListener("click", (e) => {
                 e.stopPropagation();
-                handleBookmarkClick(q.id);
+                openManageCollectionsModal(q.id);
               });
 
             fragment.appendChild(card);
@@ -883,15 +944,15 @@
 
         // --- Search ---
         function bindSearchListener() {
-          dom.searchBar.addEventListener("input", () => {
-            applyFiltersAndSearch();
-          });
+          dom.searchBar.addEventListener("input", () =>
+            applyFiltersAndSearch()
+          );
         }
 
         // --- Filtering Logic (Dependent) ---
         function bindFilterModalListeners() {
           dom.openFilterBtn.addEventListener("click", () => {
-            populateFilterDropdowns(); // Repopulate every time it opens
+            populateFilterDropdowns();
             dom.filterModal.classList.add("active");
           });
           dom.closeFilterBtn.addEventListener("click", () =>
@@ -902,18 +963,16 @@
             dom.filterModal.classList.remove("active");
           });
           dom.filterModal.addEventListener("click", (e) => {
-            if (e.target === dom.filterModal) {
+            if (e.target === dom.filterModal)
               dom.filterModal.classList.remove("active");
-            }
           });
           dom.filterResetBtn.addEventListener("click", resetFilters);
 
-          // This is the core of the dependent filters
           dom.filterSelects.forEach((select) => {
             select.addEventListener("change", () => {
               state.currentFilters[select.dataset.filter] =
                 select.value || null;
-              populateFilterDropdowns(); // Re-populate all dropdowns based on new selection
+              populateFilterDropdowns();
             });
           });
         }
@@ -926,33 +985,18 @@
             month: null,
             university: null,
           };
-          populateFilterDropdowns(); // Re-populate with all options
-          applyFiltersAndSearch(); // Apply the reset
+          populateFilterDropdowns();
+          applyFiltersAndSearch();
         }
 
-        /**
-         * Gets a list of questions filtered by all *except* the specified filter.
-         * This is used to populate the dropdowns.
-         * E.g., to populate "Topic", we filter by Subject, Year, Month, etc.
-         */
         function getPotentiallyAvailableQuestions(filterToOmit) {
           let questions = state.allQuestions;
-
           for (const key in state.currentFilters) {
-            if (key === filterToOmit || !state.currentFilters[key]) {
-              continue;
-            }
-
+            if (key === filterToOmit || !state.currentFilters[key]) continue;
             const filterValue = state.currentFilters[key];
-
             if (key === "subject" || key === "topic") {
               questions = questions.filter((q) => q[key] === filterValue);
-            } else if (
-              key === "year" ||
-              key === "month" ||
-              key === "university"
-            ) {
-              // For appearances, we need .some()
+            } else {
               questions = questions.filter((q) =>
                 q.appearances.some((a) => a[key].toString() === filterValue)
               );
@@ -973,7 +1017,6 @@
                 ...new Set(availableQuestions.map((q) => q[filterKey])),
               ];
             } else {
-              // For nested 'appearances'
               options = [
                 ...new Set(
                   availableQuestions.flatMap((q) =>
@@ -982,13 +1025,8 @@
                 ),
               ];
             }
-
             options.sort();
-
-            // Sort years in descending order
-            if (filterKey === "year") {
-              options.sort((a, b) => b - a);
-            }
+            if (filterKey === "year") options.sort((a, b) => b - a);
 
             renderSelectOptions(
               select,
@@ -1016,7 +1054,6 @@
         }
 
         function applyFiltersAndSearch() {
-          // 1. Apply dropdown filters
           let questions = state.allQuestions;
           for (const key in state.currentFilters) {
             const filterValue = state.currentFilters[key];
@@ -1031,7 +1068,6 @@
             }
           }
 
-          // 2. Apply search term
           const searchTerm = dom.searchBar.value.toLowerCase().trim();
           if (searchTerm) {
             questions = questions.filter(
@@ -1049,52 +1085,126 @@
           );
         }
 
-        // --- Bookmark & Collection Logic ---
+        // --- Bookmark & Collection Logic (Multi-collection) ---
         function bindBookmarkModalListeners() {
           dom.closeBookmarkBtn.addEventListener("click", () =>
             dom.bookmarkModal.classList.remove("active")
           );
           dom.bookmarkModal.addEventListener("click", (e) => {
-            if (e.target === dom.bookmarkModal) {
+            if (e.target === dom.bookmarkModal)
               dom.bookmarkModal.classList.remove("active");
-            }
           });
 
-          dom.createCollectionBtn.addEventListener(
-            "click",
-            createAndAddCollection
-          );
-          dom.newCollectionName.addEventListener("keyup", (e) => {
-            if (e.key === "Enter") createAndAddCollection();
+          dom.createCollectionBtn.addEventListener("click", () => {
+            const name = dom.newCollectionName.value.trim();
+            dom.newCollectionError.classList.add("hidden");
+
+            if (!name) {
+              dom.newCollectionError.textContent = "Please enter a name.";
+              dom.newCollectionError.classList.remove("hidden");
+              return;
+            }
+            if (state.collections[name]) {
+              dom.newCollectionError.textContent =
+                "A collection with this name already exists.";
+              dom.newCollectionError.classList.remove("hidden");
+              return;
+            }
+
+            // Create empty collection and auto-select it for this question in the temp set
+            state.collections[name] = [];
+            state.tempSelectedCollections.add(name);
+            dom.newCollectionName.value = "";
+            renderExistingCollectionsChecklist(); // re-render with new one checked
           });
+
+          dom.newCollectionName.addEventListener("keyup", (e) => {
+            if (e.key === "Enter") dom.createCollectionBtn.click();
+          });
+
+          dom.bookmarkSaveBtn.addEventListener("click", saveBookmarkSelections);
         }
 
-        function handleBookmarkClick(questionId) {
-          // Check if this question is already in *any* collection
-          const allBookmarkedIds = Object.values(state.collections).flat();
-          if (allBookmarkedIds.includes(questionId)) {
-            // Simple "Un-bookmark" - remove from ALL collections
-            // A more complex app might ask *which* collection to remove from
-            for (const collectionName in state.collections) {
-              state.collections[collectionName] = state.collections[
-                collectionName
-              ].filter((id) => id !== questionId);
-              // Clean up empty collections
-              if (state.collections[collectionName].length === 0) {
-                delete state.collections[collectionName];
-              }
-            }
-            saveCollections();
-            showToast("Question removed from collections");
-            // Re-render current list to update icon
-            refreshCurrentList();
-          } else {
-            // Open "Add to Collection" modal
-            state.questionToBookmark = questionId;
-            renderExistingCollectionsList();
-            dom.bookmarkModal.classList.add("active");
-            //dom.newCollectionName.focus();
+        function openManageCollectionsModal(questionId) {
+          state.questionToBookmark = questionId;
+          // initialize temp selections from real membership
+          state.tempSelectedCollections = new Set(
+            questionCollections(questionId)
+          );
+          renderExistingCollectionsChecklist();
+          dom.bookmarkModal.classList.add("active");
+        }
+
+        function renderExistingCollectionsChecklist() {
+          const collectionNames = Object.keys(state.collections).sort((a, b) =>
+            a.localeCompare(b)
+          );
+          if (collectionNames.length === 0) {
+            dom.existingCollectionsList.innerHTML = "";
+            dom.existingCollectionsEmpty.classList.remove("hidden");
+            return;
           }
+          dom.existingCollectionsEmpty.classList.add("hidden");
+
+          dom.existingCollectionsList.innerHTML = collectionNames
+            .map((name) => {
+              const checked = state.tempSelectedCollections.has(name)
+                ? "checked"
+                : "";
+              return `
+                <label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 cursor-pointer">
+                  <input type="checkbox" class="collection-checkbox accent-black dark:accent-white" data-name="${name}" ${checked} />
+                  <div class="flex items-center gap-3">
+                    ${ICONS.folder}
+                    <span class="font-medium">${name}</span>
+                  </div>
+                </label>
+              `;
+            })
+            .join("");
+
+          // wire checkboxes to temp set
+          dom.existingCollectionsList
+            .querySelectorAll(".collection-checkbox")
+            .forEach((cb) => {
+              cb.addEventListener("change", () => {
+                const name = cb.dataset.name;
+                if (cb.checked) state.tempSelectedCollections.add(name);
+                else state.tempSelectedCollections.delete(name);
+              });
+            });
+        }
+
+        function saveBookmarkSelections() {
+          const qid = state.questionToBookmark;
+          if (qid == null) return;
+
+          // For each collection, ensure membership matches temp selection
+          const selected = new Set(state.tempSelectedCollections);
+
+          // Add membership
+          selected.forEach((name) => {
+            if (!state.collections[name]) state.collections[name] = [];
+            if (!state.collections[name].includes(qid))
+              state.collections[name].push(qid);
+          });
+
+          // Remove membership from collections not selected
+          Object.keys(state.collections).forEach((name) => {
+            const arr = state.collections[name];
+            const idx = arr.indexOf(qid);
+            if (!selected.has(name) && idx !== -1) {
+              arr.splice(idx, 1);
+              // keep empty collections (so users can reuse them)
+            }
+          });
+
+          saveCollections();
+          dom.bookmarkModal.classList.remove("active");
+          showToast("Collections updated");
+          state.questionToBookmark = null;
+
+          refreshCurrentList();
         }
 
         function refreshCurrentList() {
@@ -1108,76 +1218,14 @@
             if (state.collections[collectionName]) {
               renderCollectionDetailPage(collectionName);
             } else {
-              // Collection was deleted
               renderPage("collections");
             }
+          } else if (
+            state.currentPage === "question-detail" &&
+            state.currentQuestionId != null
+          ) {
+            renderQuestionDetailPage(state.currentQuestionId);
           }
-        }
-
-        function renderExistingCollectionsList() {
-          const collectionNames = Object.keys(state.collections);
-          if (collectionNames.length === 0) {
-            dom.existingCollectionsList.innerHTML = "";
-            dom.existingCollectionsEmpty.classList.remove("hidden");
-            return;
-          }
-
-          dom.existingCollectionsEmpty.classList.add("hidden");
-          dom.existingCollectionsList.innerHTML = collectionNames
-            .map(
-              (name) => `
-                    <button class="add-to-collection-btn w-full text-left flex items-center gap-3 p-3 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700" data-name="${name}">
-                        ${ICONS.folder}
-                        <span class="font-medium">${name}</span>
-                    </button>
-                `
-            )
-            .join("");
-
-          // Add listeners to these new buttons
-          document.querySelectorAll(".add-to-collection-btn").forEach((btn) => {
-            btn.addEventListener("click", () => {
-              addQuestionToCollection(btn.dataset.name);
-            });
-          });
-        }
-
-        function createAndAddCollection() {
-          const name = dom.newCollectionName.value.trim();
-          dom.newCollectionError.classList.add("hidden");
-
-          if (!name) {
-            dom.newCollectionError.textContent = "Please enter a name.";
-            dom.newCollectionError.classList.remove("hidden");
-            return;
-          }
-          if (state.collections[name]) {
-            dom.newCollectionError.textContent =
-              "A collection with this name already exists.";
-            dom.newCollectionError.classList.remove("hidden");
-            return;
-          }
-
-          state.collections[name] = [];
-          addQuestionToCollection(name);
-          dom.newCollectionName.value = "";
-        }
-
-        function addQuestionToCollection(name) {
-          if (!state.collections[name].includes(state.questionToBookmark)) {
-            state.collections[name].push(state.questionToBookmark);
-            saveCollections();
-            showToast(`Saved to "${name}"`);
-          } else {
-            showToast(`Already in "${name}"`);
-          }
-          dom.bookmarkModal.classList.remove("active");
-          state.questionToBookmark = null;
-          // Re-render home list to update icon
-          renderQuestionList(
-            state.filteredQuestions,
-            dom.questionListContainer
-          );
         }
 
         // --- Collections Page ---
@@ -1194,23 +1242,22 @@
             .map((name) => {
               const count = state.collections[name].length;
               return `
-                    <button class="view-collection-btn w-full flex justify-between items-center bg-white dark:bg-zinc-800 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm hover:bg-zinc-50 dark:hover:bg-zinc-700" data-name="${name}">
-                        <div class="flex items-center gap-3">
-                            ${ICONS.folder}
-                            <div>
-                                <h3 class="font-semibold text-left">${name}</h3>
-                                <p class="text-sm text-zinc-500 dark:text-zinc-400">${count} question${
+                <button class="view-collection-btn w-full flex justify-between items-center bg-white dark:bg-zinc-800 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm hover:bg-zinc-50 dark:hover:bg-zinc-700" data-name="${name}">
+                  <div class="flex items-center gap-3">
+                    ${ICONS.folder}
+                    <div>
+                      <h3 class="font-semibold text-left">${name}</h3>
+                      <p class="text-sm text-zinc-500 dark:text-zinc-400">${count} question${
                 count !== 1 ? "s" : ""
               }</p>
-                            </div>
-                        </div>
-                        ${ICONS.chevronRight}
-                    </button>
-                `;
+                    </div>
+                  </div>
+                  ${ICONS.chevronRight}
+                </button>
+              `;
             })
             .join("");
 
-          // Add listeners
           document.querySelectorAll(".view-collection-btn").forEach((btn) => {
             btn.addEventListener("click", () => {
               renderCollectionDetailPage(btn.dataset.name);
@@ -1221,16 +1268,11 @@
 
         // --- Collection Detail Page ---
         function bindCollectionDetailListeners() {
-          dom.backToCollectionsBtn.addEventListener("click", () => {
-            renderPage("collections");
-          });
+          dom.backToCollectionsBtn.addEventListener("click", () =>
+            renderPage("collections")
+          );
           dom.deleteCollectionBtn.addEventListener("click", () => {
             const collectionName = dom.collectionDetailTitle.textContent;
-            // Using a simple prompt as a custom modal is a lot of extra code
-            // User requested no 'alert', 'confirm'. This is a tricky spot.
-            // Let's just delete it directly, as it's an internal-facing tool.
-            // A better app would have a custom "Are you sure?" modal.
-            // For now, let's just do it.
             if (collectionName && state.collections[collectionName]) {
               delete state.collections[collectionName];
               saveCollections();
@@ -1246,19 +1288,58 @@
           const questions = state.allQuestions.filter((q) =>
             questionIds.includes(q.id)
           );
-
-          // Re-use the renderQuestionList function
           renderQuestionList(questions, dom.collectionQuestionList);
+        }
+
+        // --- Question Detail Page ---
+        function bindQuestionDetailListeners() {
+          dom.backToHomeBtn.addEventListener("click", () => renderPage("home"));
+          dom.qdBookmarkBtn.addEventListener("click", () => {
+            if (state.currentQuestionId != null)
+              openManageCollectionsModal(state.currentQuestionId);
+          });
+          dom.qdAskAiBtn.addEventListener("click", () => {
+            showToast("Keep supporting this app for this future feature.");
+          });
+        }
+
+        function renderQuestionDetailPage(id) {
+          const q = state.allQuestions.find((x) => x.id === id);
+          if (!q) {
+            renderPage("home");
+            return;
+          }
+
+          dom.qdText.textContent = q.text;
+
+          dom.qdTags.innerHTML = `
+            <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 px-2.5 py-1 rounded-full text-xs font-medium">${q.subject}</span>
+            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 px-2.5 py-1 rounded-full text-xs font-medium">${q.topic}</span>
+          `;
+
+          dom.qdAppearances.innerHTML = buildAppearancesHTML(q);
+
+          const cols = questionCollections(id);
+          if (cols.length === 0) {
+            dom.qdCollections.innerHTML = "";
+            dom.qdNoCollections.classList.remove("hidden");
+          } else {
+            dom.qdNoCollections.classList.add("hidden");
+            dom.qdCollections.innerHTML = cols
+              .sort((a, b) => a.localeCompare(b))
+              .map(
+                (name) =>
+                  `<span class="inline-block bg-zinc-100 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-300 px-2.5 py-1 rounded-full text-xs font-medium">${name}</span>`
+              )
+              .join("");
+          }
         }
 
         // --- Toast ---
         function showToast(message) {
-          if (state.toastTimer) {
-            clearTimeout(state.toastTimer);
-          }
+          if (state.toastTimer) clearTimeout(state.toastTimer);
           dom.toastMessage.textContent = message;
           dom.toast.classList.add("active");
-
           state.toastTimer = setTimeout(() => {
             dom.toast.classList.remove("active");
             state.toastTimer = null;
