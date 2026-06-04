@@ -1,0 +1,171 @@
+[
+  {
+    "id": "1",
+    "question": "Write the origin and insertion of the hamstring muscles.",
+    "type": "short_answer",
+    "topics": ["Hamstring", "Muscle Attachment"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2026 },
+      { "university": "DU", "month": "May", "year": 2022 },
+      { "university": "DU", "month": "Jun", "year": 2021 },
+      { "university": "CU", "month": "Nov", "year": 2025 },
+      { "university": "CU", "month": "May", "year": 2019 }
+    ]
+  },
+  {
+    "id": "2",
+    "question": "Describe the boundaries and contents of the femoral triangle.",
+    "type": "essay",
+    "topics": ["Lower Limb"],
+    "appearances": [
+      { "university": "DU", "month": "Nov", "year": 2025 },
+      { "university": "DU", "month": "May", "year": 2021 },
+      { "university": "CU", "month": "May", "year": 2024 }
+    ]
+  },
+  {
+    "id": "3",
+    "question": "Enumerate the branches of the external carotid artery.",
+    "type": "short_answer",
+    "topics": ["External Carotid Artery", "Head & Neck"],
+    "appearances": [
+      { "university": "CU", "month": "Nov", "year": 2025 },
+      { "university": "DU", "month": "May", "year": 2023 },
+      { "university": "RU", "month": "Nov", "year": 2020 }
+    ]
+  },
+  {
+    "id": "4",
+    "question": "Discuss the blood supply of the heart.",
+    "type": "essay",
+    "topics": ["Heart", "Cardiovascular System"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2026 },
+      { "university": "CU", "month": "May", "year": 2025 },
+      { "university": "CU", "month": "Nov", "year": 2022 },
+      { "university": "RU", "month": "May", "year": 2021 }
+    ]
+  },
+  {
+    "id": "5",
+    "question": "Write a note on the cubital fossa.",
+    "type": "short_answer",
+    "topics": ["Cubital Fossa", "Upper Limb"],
+    "appearances": [
+      { "university": "DU", "month": "Nov", "year": 2024 },
+      { "university": "DU", "month": "May", "year": 2020 },
+      { "university": "CU", "month": "May", "year": 2023 }
+    ]
+  },
+  {
+    "id": "6",
+    "question": "Describe the course and branches of the facial nerve.",
+    "type": "essay",
+    "topics": ["Facial Nerve", "Cranial Nerves"],
+    "appearances": [
+      { "university": "CU", "month": "Nov", "year": 2025 },
+      { "university": "DU", "month": "May", "year": 2024 },
+      { "university": "RU", "month": "Nov", "year": 2021 }
+    ]
+  },
+  {
+    "id": "7",
+    "question": "Name the muscles of mastication and mention their nerve supply.",
+    "type": "short_answer",
+    "topics": ["Muscles of Mastication", "Head & Neck"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2025 },
+      { "university": "CU", "month": "May", "year": 2022 },
+      { "university": "CU", "month": "Nov", "year": 2019 }
+    ]
+  },
+  {
+    "id": "8",
+    "question": "Describe the anatomical structure of the portal vein.",
+    "type": "essay",
+    "topics": ["Portal Vein", "Abdomen"],
+    "appearances": [
+      { "university": "DU", "month": "Nov", "year": 2025 },
+      { "university": "RU", "month": "May", "year": 2024 },
+      { "university": "CU", "month": "May", "year": 2021 }
+    ]
+  },
+  {
+    "id": "9",
+    "question": "Write a note on the inguinal canal.",
+    "type": "essay",
+    "topics": ["Inguinal Canal", "Abdomen"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2026 },
+      { "university": "DU", "month": "Nov", "year": 2023 },
+      { "university": "CU", "month": "May", "year": 2022 },
+      { "university": "RU", "month": "May", "year": 2020 }
+    ]
+  },
+  {
+    "id": "10",
+    "question": "Describe the boundaries and contents of the axilla.",
+    "type": "essay",
+    "topics": ["Axilla", "Upper Limb"],
+    "appearances": [
+      { "university": "CU", "month": "Nov", "year": 2025 },
+      { "university": "DU", "month": "May", "year": 2024 },
+      { "university": "DU", "month": "May", "year": 2021 }
+    ]
+  },
+  {
+    "id": "11",
+    "question": "Classify the joints of the human body with examples.",
+    "type": "short_answer",
+    "topics": ["Joints", "General Anatomy"],
+    "appearances": [
+      { "university": "DU", "month": "Nov", "year": 2025 },
+      { "university": "CU", "month": "May", "year": 2023 },
+      { "university": "RU", "month": "Nov", "year": 2022 }
+    ]
+  },
+  {
+    "id": "12",
+    "question": "Describe the anatomical basis of foot drop.",
+    "type": "short_answer",
+    "topics": ["Foot Drop", "Clinical Anatomy"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2025 },
+      { "university": "CU", "month": "Nov", "year": 2024 },
+      { "university": "RU", "month": "May", "year": 2021 }
+    ]
+  },
+  {
+    "id": "13",
+    "question": "Discuss the anatomy of the thyroid gland.",
+    "type": "essay",
+    "topics": ["Thyroid Gland", "Endocrine Anatomy"],
+    "appearances": [
+      { "university": "DU", "month": "May", "year": 2026 },
+      { "university": "CU", "month": "May", "year": 2025 },
+      { "university": "CU", "month": "Nov", "year": 2021 }
+    ]
+  },
+  {
+    "id": "14",
+    "question": "Enumerate the branches of the brachial plexus.",
+    "type": "short_answer",
+    "topics": ["Brachial Plexus", "Upper Limb"],
+    "appearances": [
+      { "university": "DU", "month": "Nov", "year": 2025 },
+      { "university": "DU", "month": "May", "year": 2022 },
+      { "university": "CU", "month": "May", "year": 2020 }
+    ]
+  },
+  {
+    "id": "15",
+    "question": "Describe the anatomy of the spleen.",
+    "type": "essay",
+    "topics": ["Spleen", "Abdomen"],
+    "appearances": [
+      { "university": "CU", "month": "May", "year": 2026 },
+      { "university": "DU", "month": "Nov", "year": 2024 },
+      { "university": "RU", "month": "May", "year": 2022 }
+    ]
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "question": "Describe the cardiac cycle.",
+    "type": "essay",
+    "topics": ["Cardiac Cycle", "Cardiovascular System"],
+    "appearances": [
+      {
+        "university": "DU",
+        "month": "May",
+        "year": 2026
+      },
+      {
+        "university": "CU",
+        "month": "Nov",
+        "year": 2025
+      },
+      {
+        "university": "RU",
+        "month": "May",
+        "year": 2023
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Explain the mechanism of blood coagulation.",
+    "type": "essay",
+    "topics": ["Blood", "Coagulation"],
+    "appearances": [
+      {
+        "university": "DU",
+        "month": "Nov",
+        "year": 2025
+      },
+      {
+        "university": "CU",
+        "month": "May",
+        "year": 2024
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Write a short note on erythropoiesis.",
+    "type": "short_answer",
+    "topics": ["Blood", "Erythropoiesis"],
+    "appearances": [
+      {
+        "university": "DU",
+        "month": "Jun",
+        "year": 2021
+      },
+      {
+        "university": "RU",
+        "month": "Nov",
+        "year": 2022
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Describe the functions of the hypothalamus.",
+    "type": "essay",
+    "topics": ["Hypothalamus", "Endocrine Physiology"],
+    "appearances": [
+      {
+        "university": "CU",
+        "month": "May",
+        "year": 2025
+      },
+      {
+        "university": "DU",
+        "month": "Nov",
+        "year": 2024
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Enumerate the functions of the kidney.",
+    "type": "short_answer",
+    "topics": ["Kidney", "Renal Physiology"],
+    "appearances": [
+      {
+        "university": "RU",
+        "month": "May",
+        "year": 2026
+      },
+      {
+        "university": "DU",
+        "month": "Nov",
+        "year": 2023
+      },
+      {
+        "university": "CU",
+        "month": "May",
+        "year": 2022
+      }
+    ]
+  }
+]
